@@ -5,14 +5,10 @@ import * as postmark from 'postmark';
 @Injectable()
 export class PostmarkClient {
   private client: postmark.ServerClient;
-  private accountClient: postmark.AccountClient;
 
   constructor(private readonly configService: ConfigService) {
     this.client = new postmark.ServerClient(
       this.configService.getOrThrow<string>('POSTMARK_SERVER_TOKEN'),
-    );
-    this.accountClient = new postmark.AccountClient(
-      this.configService.getOrThrow<string>('POSTMARK_ACCOUNT_TOKEN'),
     );
   }
 
