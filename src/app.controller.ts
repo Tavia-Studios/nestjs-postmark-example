@@ -16,11 +16,17 @@ export class AppController {
 
   @Post('send-email')
   async sendEmail(
-    @Body() sendEmailDto: { to: string; subject: string; body: string },
+    @Body()
+    sendEmailDto: {
+      to: string;
+      from: string;
+      subject: string;
+      body: string;
+    },
   ): Promise<string> {
-    const { to, subject, body } = sendEmailDto;
+    const { to, from, subject, body } = sendEmailDto;
 
-    await this.emailService.sendEmail(to, subject, body);
+    await this.emailService.sendEmail(to, from, subject, body);
 
     return 'Sending email';
   }

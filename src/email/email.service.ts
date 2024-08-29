@@ -8,11 +8,12 @@ export class EmailService {
 
   async sendEmail(
     to: string,
+    from: string,
     subject: string,
     body: string,
   ): Promise<postmark.Models.MessageSendingResponse> {
     const mail: postmark.Models.Message = {
-      From: 'luke@taviastudios.tech',
+      From: from,
       To: to,
       Subject: subject,
       TextBody: body,

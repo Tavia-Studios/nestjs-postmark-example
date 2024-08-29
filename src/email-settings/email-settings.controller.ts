@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
 import { EmailSettingsService } from './email-settings.service';
 
 @Controller('email-settings')
@@ -18,8 +18,8 @@ export class EmailSettingsController {
     return this.emailSettingsService.verify(ID, type);
   }
 
-  @Delete()
-  public async delete(@Body('ID') ID: number) {
+  @Delete(':ID')
+  public async delete(@Param('ID') ID: number) {
     return this.emailSettingsService.delete(ID);
   }
 }
