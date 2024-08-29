@@ -35,4 +35,49 @@ export class PostmarkClient {
       throw new Error(error);
     }
   }
+
+  /**
+   * Domain Management
+   */
+  public async addDomain(
+    domain: string,
+  ): Promise<postmark.Models.DomainDetails> {
+    try {
+      const res = await this.accountClient.createDomain({
+        Name: domain,
+        ReturnPathDomain: `pm-bounces.${domain}`,
+      });
+      return res;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  public async verifyDKIM(ID: number): Promise<postmark.Models.DomainDetails> {
+    try {
+      const res = await this.accountClient.verifyDomainDKIM(ID);
+      return res;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  public async verifyReturnPath(
+    ID: number,
+  ): Promise<postmark.Models.DomainDetails> {
+    try {
+      const res = await this.accountClient.verifyDomainReturnPath(ID);
+      return res;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  public async deleteDomain(ID: number): Promise<void> {
+    try {
+      await this.accountClient.deleteDomain(ID);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }

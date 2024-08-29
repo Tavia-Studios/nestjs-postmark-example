@@ -4,6 +4,6 @@ import { PostmarkClient } from './postmark-client';
 
 @Module({
   providers: [EmailService, PostmarkClient],
-  exports: [EmailService],
+  exports: [EmailService, PostmarkClient],
 })
 export class EmailModule {}
